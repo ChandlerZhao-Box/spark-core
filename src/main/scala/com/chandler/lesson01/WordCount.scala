@@ -1,6 +1,7 @@
 package com.chandler.lesson01
 
 import org.apache.spark.{SparkConf, SparkContext}
+import java.io.File
 
 object WordCount {
 
@@ -23,10 +24,16 @@ object WordCount {
     val res = pairWord.reduceByKey((x, y) => {
       x + y
     })
+    //(chandler,1)
+    //(hello,2)
+    //(123,1)
+    //(world,1)
+    //(test,1)
 
     val fanzhuan = res.map(x => (x._2, 1))
     val resOver = fanzhuan.reduceByKey(_ + _)
-
+    //(1,4)
+    //(2,1)
     resOver.foreach(println)
     println("="*50)
     res.foreach(println)

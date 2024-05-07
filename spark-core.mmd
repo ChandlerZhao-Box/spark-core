@@ -1,0 +1,45 @@
+[Scia Reto](https://sciareto.org) mind map   
+> __version__=`1.1`,generatorId=`com.igormaznitsa:idea-mindmap:intellij-2023.3.0-IntelliJ IDEA`
+---
+
+# spark\-core
+
+## 应用
+
+### 编程模型
+
+#### RDD
+
+##### A Resillient Distributed DataSet
+
+##### A list of partitions SPLITS
+
+##### A function for computing each split
+
+##### A list of dependencies on other RDDs
+
+##### a Partitioner for key\-value RDDs
+
+##### a list of preferred locations to compute each split
+
+## 解释RDD的过程
+
+### RDD 是怎么来的？
+
+#### textFile可以产生一个RDD，它有两个参数，path和minPartitions，文件路径的块的个数和minPartitions会取一个较大值
+
+##### 最终是返回一个HadoopRDD
+
+###### HadoopRDD是集成RDD，RDD的构造函数有两个参数，一个是sparkContext，第二个参数是deps
+
+### RDD是怎么读取的数据，怎么划的分区
+
+#### 发现RDD里面有个方法叫getPartitions
+
+##### partitions=splits
+
+#### 知道了有多少分区了，RDD里面的数据怎么计算？
+
+##### compute 传入文件分区编号，返回包装的迭代器，只有调用next的时候才会计算
+
+### RDD之间是怎么转换的？
