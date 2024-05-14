@@ -1,4 +1,4 @@
-package com.chandler.lesson01
+package com.chandler.spark.core
 
 import org.apache.spark.{SparkConf, SparkContext}
 import java.io.File
@@ -13,7 +13,7 @@ object WordCount {
 
     val sc = new SparkContext(sparkConf)
 
-    val fileRDD = sc.textFile("data/testdata.txt")
+    val fileRDD = sc.textFile("data/testdata.txt", 100)
 
     val words = fileRDD.flatMap(x => {
       x.split(" ")
@@ -29,13 +29,15 @@ object WordCount {
     //(123,1)
     //(world,1)
     //(test,1)
-
+//
     val fanzhuan = res.map(x => (x._2, 1))
     val resOver = fanzhuan.reduceByKey(_ + _)
     //(1,4)
     //(2,1)
-    resOver.foreach(println)
+//    resOver.foreach(println)
     println("="*50)
-    res.foreach(println)
+//    res.foreach(println)
+
+    Thread.sleep(1000000)
   }
 }
